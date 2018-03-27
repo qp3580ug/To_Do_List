@@ -86,13 +86,23 @@ router.post('/alldone', function(req, res, next){
     });
 });
 
-router.get('/task/:_id', function(req,res, next){
+router.get('/task/:_id', function(req, res, next){
   Task.findById(req.params._id)
     .then( (doc) => {
       if (doc) {
         res.render('task', {task: doc});
       }
     })
+    .catch( (err) => {
+      next(err);
+    });
+});
+
+router.post('/deleteDone', function(req, res, next){
+  Task.deleteMany({completed: true})
+    .then( () => {
+      res.redirect('/');
+    });
     .catch( (err) => {
       next(err);
     });

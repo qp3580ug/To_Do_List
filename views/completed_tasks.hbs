@@ -17,3 +17,12 @@
   {{/if}}
 
 </div>
+
+<div>
+  {{#if tasks}}
+    <form class="delete-done-form" action="/deleteDone" method="POST">
+      <input class="delete-done-button" type="submit" name="delete-done" value="Delete completed tasks">
+      <input type="hidden" name="_id" value="{{this._id}}">
+    </form>
+  {{/if}}
+</div>
